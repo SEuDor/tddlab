@@ -8,6 +8,8 @@
 namespace application;
 
 
+use exceptions\NegativeItemException;
+
 class Calculator
 {
 
@@ -20,13 +22,22 @@ class Calculator
     {
         $parts = preg_split("/[^\d-]/", $nums);
 
+        $negatives = [];
         $res = 0;
 
         foreach($parts as $token)
         {
+            if($token < 0)
+            {
+                array_push($negatives, $token);
+            }
             $res += $token;
         }
 
+        if(!empty($negatives))
+        {
+            throw new NegativeItemException("Negatives are not allowed: " . implode(', ', $negatives));
+        }
         return $res;
     }
 }

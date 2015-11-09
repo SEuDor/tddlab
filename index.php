@@ -13,4 +13,4 @@ spl_autoload_register();
 $calc = new Calculator();
 $calc->add("");
 $calc->add("1");
-$calc->add("1,2");
+$calc->add("-1,-2");

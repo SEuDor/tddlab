@@ -44,4 +44,31 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
         $o = new Calculator();
         $this->assertEquals(6 ,$o->add("1,2,3"));
     }
+
+    public function testSymbolDelimiter()
+    {
+        $o = new Calculator();
+        $this->assertEquals(6 ,$o->add("1\n2,3"));
+    }
+
+    public function testSymbolItem()
+    {
+        $o = new Calculator();
+        $this->assertEquals(3 ,$o->add("1,2,\n"));
+    }
+
+    public function testDiffDelimiters()
+    {
+        $o = new Calculator();
+        $this->assertEquals(10 ,$o->add("1,2s3//4"));
+    }
+
+    /**
+     * @expectedException NegativeItemException
+     */
+    public function testExpectException()
+    {
+        $o = new Calculator();
+        $o->add("-1,2");
+    }
 } 
