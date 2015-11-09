@@ -18,17 +18,23 @@ class Calculator
 
     public function add($nums)
     {
-        $parts = preg_split("/[^\d-]/", $nums);
-
-        if(empty($parts))
+        if(strlen($nums) === 0)
         {
             return 0;
         }
 
-        $res = 0;
-        foreach ($parts as $token)
+        $parts = preg_split("/[^\d-]/", $nums);
+
+        $res = null;
+
+        switch(count($parts))
         {
-            $res += $token;
+            case 1:
+                $res = $parts[0];
+                break;
+            case 2:
+                $res = $parts[0] + $parts[1];
+                break;
         }
 
         return $res;

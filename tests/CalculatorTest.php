@@ -38,4 +38,10 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
         $o = new Calculator();
         $this->assertEquals(1 ,$o->add("1"));
     }
+
+    public function testMoreNumsSum()
+    {
+        $o = new Calculator();
+        $this->assertEquals(6 ,$o->add("1,2,3"));
+    }
 } 
