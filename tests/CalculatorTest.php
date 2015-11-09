@@ -8,6 +8,7 @@
 namespace tests;
 
 include "../application/Calculator.php";
+include "../exceptions/NegativeItemException.php";
 
 use application\Calculator;
 
@@ -64,11 +65,17 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException NegativeItemException
+     * @expectedException \exceptions\NegativeItemException
      */
     public function testExpectException()
     {
         $o = new Calculator();
         $o->add("-1,2");
+    }
+
+    public function testBiggerThanThousand()
+    {
+        $o = new Calculator();
+        $this->assertEquals(2, $o->add("2,1001"));
     }
 } 

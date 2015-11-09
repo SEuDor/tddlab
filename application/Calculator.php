@@ -31,7 +31,8 @@ class Calculator
             {
                 array_push($negatives, $token);
             }
-            $res += $token;
+            //$res += $token;
+            $res += ($token > 1000) ? 0 : $token;
         }
 
         if(!empty($negatives))
