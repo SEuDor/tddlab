@@ -78,4 +78,10 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
         $o = new Calculator();
         $this->assertEquals(2, $o->add("2,1001"));
     }
+
+    public function testLongDelimiter()
+    {
+        $o = new Calculator();
+        $this->assertEquals(6, $o->add("1***2.,..3"));
+    }
 } 
