@@ -20,7 +20,22 @@ class Calculator
 
     public function add($nums)
     {
-        $parts = preg_split("/[^\d-]/", $nums);
+        $patEnd = @strpos($nums, '\n', 2);
+        $numPart = null;
+        if($patEnd !== false)
+        {
+            $delimPat = substr($nums, 2, $patEnd-2);
+            $delimPat = str_replace(['[', ']'], '', $delimPat);
+            $rgxPtrn = "/[$delimPat]/";
+            $numPart = substr($nums, $patEnd + 2);
+        }
+        else
+        {
+            $rgxPtrn = "/;/";
+            $numPart = $nums;
+        }
+
+        $parts = preg_split($rgxPtrn, $numPart);
 
         $negatives = [];
         $res = 0;
